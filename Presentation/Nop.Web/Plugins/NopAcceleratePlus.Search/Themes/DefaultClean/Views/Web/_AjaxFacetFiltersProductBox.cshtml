@@ -1,0 +1,41 @@
+﻿@model SearchModel
+
+@{
+    if (Model.PagingFilteringContext.ViewMode == "list")
+    {
+        @*list mode*@
+
+        <div class="item-grid">
+            @foreach (var product in Model.Products)
+            {
+                <div class="item-box">
+                    @await Html.PartialAsync("_ProductBox", product)
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        @*grid mode*@
+        <div class="item-grid">
+            @foreach (var product in Model.Products)
+            {
+                <div class="item-box">
+                    @await Html.PartialAsync("_ProductBox", product)
+                </div>
+            }
+        </div>
+    }
+
+    var pager = Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber");
+
+    if (!pager.IsEmpty())
+    {
+        <div class="pager">
+            @pager
+        </div>
+    }
+    <div class="search-infinite-next" style="display:none;">
+        <button class="search-infinite-next-btn" onclick="showNext()">@T("Plugins.NopAcceleratePlus.Solr.Search.Scroll.More")</button>
+    </div>
+}

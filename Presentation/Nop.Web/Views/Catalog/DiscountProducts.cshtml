@@ -1,0 +1,50 @@
+﻿@model Nop.Web.Models.Catalog.DisountProductsModel
+@{
+    Layout = "_ColumnsTwo";
+
+    //title
+    Html.AddTitleParts(T("PageTitle.Search").Text);
+    //page class
+    Html.AppendPageCssClassParts("html-search-page");
+}
+
+<div class="page search-page">
+    <div class="page-title panel-heading">
+        <h1>@T("Search")</h1>
+    </div>
+    <div class="page-body">
+        @if (Model.Products.Count > 0)
+        {
+            @await Html.PartialAsync("_CatalogSelectors", Model.PagingFilteringContext)
+        }
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductSearchPageBeforeResults })
+        <div class="search-results">
+            @*product grid and list*@
+            @if (Model.Products.Count > 0)
+            {
+                <div class="product-grid clearfix">
+                    <div class="row">
+                        @foreach (var product in Model.Products)
+                        {
+                            <div class="item-box @(Model.PagingFilteringContext.ViewMode == "list" ? "product-list col-xs-12 col-sm-12 col-md-12 col-lg-12 product-align" : "product-grid col-xs-12 col-sm-4 col-md-4 col-lg-4 product-align")">
+                                <div class="thumbnail">
+                                    @await Html.PartialAsync("_ProductBox", product)
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            @{
+                var pager = Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber").RenderEmptyParameters(true);
+            }
+            @if (!pager.IsEmpty())
+            {
+                <div class="pager">
+                    @pager
+                </div>
+            }
+        </div>
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductSearchPageAfterResults })
+    </div>
+</div>

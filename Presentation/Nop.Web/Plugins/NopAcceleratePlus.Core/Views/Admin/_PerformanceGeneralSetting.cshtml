@@ -1,0 +1,83 @@
+﻿@model XcellenceIT.Plugin.NopAcceleratePlus.Core.Models.GeneralSettingModel
+@{
+    Html.SetActiveMenuItemSystemName("XcellenceIT.Plugin.NopAcceleratePlus.Core.GeneralSetting");
+}
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <nop-override-store-checkbox asp-for="EnableSolrPrice_OverrideForStore" asp-input="EnableSolrPrice" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                    <nop-label asp-for="EnableSolrPrice" />
+                </div>
+                <div class="col-md-2">
+                    <nop-editor asp-for="EnableSolrPrice" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <nop-override-store-checkbox asp-for="StoreLastContinueShoppingPage_OverrideForStore" asp-input="StoreLastContinueShoppingPage" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                    <nop-label asp-for="StoreLastContinueShoppingPage" />
+                </div>
+                <div class="col-md-2">
+                    <nop-editor asp-for="StoreLastContinueShoppingPage" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <nop-override-store-checkbox asp-for="UseCaching_OverrideForStore" asp-input="UseCaching" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                    <nop-label asp-for="UseCaching" />
+                </div>
+                <div class="col-md-2">
+                    <nop-editor asp-for="UseCaching" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <nop-override-store-checkbox asp-for="GetAttributesFromSolr_OverrideForStore" asp-input="GetAttributesFromSolr" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                    <nop-label asp-for="GetAttributesFromSolr" />
+                </div>
+                <div class="col-md-2">
+                    <nop-editor asp-for="GetAttributesFromSolr" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <nop-override-store-checkbox asp-for="SkipAvailableDateTimeQuery_OverrideForStore" asp-input="SkipAvailableDateTimeQuery" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                    <nop-label asp-for="SkipAvailableDateTimeQuery" />
+                </div>
+                <div class="col-md-2">
+                    <nop-editor asp-for="SkipAvailableDateTimeQuery" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <nop-override-store-checkbox asp-for="EnableAdminSearch_OverrideForStore" asp-input="EnableAdminSearch" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                    <nop-label asp-for="EnableAdminSearch" />
+                </div>
+                <div class="col-md-2">
+                    <nop-editor asp-for="EnableAdminSearch" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <nop-override-store-checkbox asp-for="EnableImageIndexing_OverrideForStore" asp-input="EnableImageIndexing" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                    <nop-label asp-for="EnableImageIndexing" />
+                </div>
+                <div class="col-md-2">
+                    <nop-editor asp-for="EnableImageIndexing" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4">
+                    <nop-override-store-checkbox asp-for="ShowImagesInGrid_OverrideForStore" asp-input="ShowImagesInGrid" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                    <nop-label asp-for="ShowImagesInGrid" />
+                </div>
+                <div class="col-md-2">
+                    <nop-editor asp-for="ShowImagesInGrid" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

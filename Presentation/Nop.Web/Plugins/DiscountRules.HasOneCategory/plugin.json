@@ -1,0 +1,11 @@
+﻿{
+  "Group": "nopCommercePlus",
+  "FriendlyName": "Customer has one of these categories in the cart",
+  "SystemName": "DiscountRequirement.HasOneCategory",
+  "Version": "1.33",
+  "SupportedVersions": [ "4.30" ],
+  "Author": "nopCommercePlus(Forefront Infotech)",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.DiscountRules.HasOneCategory.dll",
+  "Description": "This plugin allows you to configure discounts for customers who have one of a certain Category in the cart"
+}
