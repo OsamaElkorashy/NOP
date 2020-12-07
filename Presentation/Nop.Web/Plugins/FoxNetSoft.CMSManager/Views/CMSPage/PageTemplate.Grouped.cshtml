@@ -1,0 +1,87 @@
+﻿@model FoxNetSoft.Plugin.Misc.CMSManager.Models.GroupedPageDetailsModel
+@inject IWorkContext workContext
+@inject SeoSettings seoSettings
+@using Nop.Web.Framework.UI
+@using Nop.Core
+@using Nop.Core.Domain.Seo
+@using Nop.Web.Extensions
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using FoxNetSoft.Plugin.Misc.CMSManager.Helpers
+@{
+    Layout = "_ColumnsTwo";
+
+    Html.AddCssFileParts(ResolveViewPathHelper.GetThemesCSSPath("styles.css"));
+    var supportRtl = workContext.WorkingLanguage.Rtl;
+    if (supportRtl)
+    {
+        Html.AddCssFileParts(ResolveViewPathHelper.GetThemesCSSPath("styles.rtl.css"));
+    }
+    //title
+    Html.AddTitleParts(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : T("FoxNetSoft.CMSManager.PageTitle.CMSPage").Text);
+    Html.AddMetaDescriptionParts(Model.MetaDescription);
+    Html.AddMetaKeywordParts(Model.MetaKeywords);
+
+    if (seoSettings.CanonicalUrlsEnabled)
+    {
+        var cmsPageUrl = Url.RouteUrl("CMSPageDetails", new { SeName = Model.SeName }, this.Url.ActionContext.HttpContext.Request.Scheme);
+        Html.AddCanonicalUrlParts(cmsPageUrl, seoSettings.QueryStringInCanonicalUrlsEnabled);
+    }
+}
+@section left {
+    @await Component.InvokeAsync("CMSPageTreeNavigation", new { pageId = Model.Id })
+    @await Component.InvokeAsync("CMSPageTags", new { pageId = Model.Id })
+}
+@*breadcrumb*@
+@if (Model.Breadcrumb.Enabled)
+{
+    @await Html.PartialAsync(ResolveViewPathHelper.GetThemesPath("CMSPage/_PageBreadcrumb.cshtml"), Model.Breadcrumb)
+}
+<div class="page cmspage-page">
+    <div class="page-title">
+        <h1>
+            @if (!String.IsNullOrEmpty(Model.Name))
+            {
+                @Model.Name
+            }
+            else
+            {
+                @T("FoxNetSoft.CMSManager.PageTitle.CMSPage")
+            }
+        </h1>
+    </div>
+    <div class="page-body">
+        @*description*@
+        @if (!String.IsNullOrWhiteSpace(Model.FullDescription))
+        {
+            <div class="cmspagegroup-description">
+                @Html.Raw(Model.FullDescription)
+            </div>
+        }
+        @if (Model.Id == 0 && string.IsNullOrWhiteSpace(Model.PagingFilteringContext.Tag))
+        {
+            <div class="cmspagegroup-description">
+                @await Component.InvokeAsync("TopicBlock", new { systemName = "CMSManagerHomePage" })
+            </div>
+        }
+        <div class="cmspages-selectors">
+            @*sorting*@
+            @if (Model.Pages.Any())
+            {
+                <div class="cmspage-sorting">
+                    <span>@T("FoxNetSoft.CMSManager.PageDetails.OrderBy")</span>
+                    @Html.DropDownList("cmspages-orderby", Model.PagingFilteringContext.AvailableSortOptions, new { onchange = "setLocation(this.value);" })
+                </div>
+            }
+        </div>
+        @await Html.PartialAsync(ResolveViewPathHelper.GetThemesPath("CMSPage/_PagesBlock.cshtml"), Model.Pages)
+        @{
+            var pager = Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber");
+        }
+        @if (!pager.IsEmpty())
+        {
+            <div class="pager">
+                @pager
+            </div>
+        }
+    </div>
+</div>

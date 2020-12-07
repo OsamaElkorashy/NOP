@@ -1,0 +1,198 @@
+﻿@model FoxNetSoft.Plugin.Misc.CMSManager.Models.SimplePageDetailsModel
+@inject IWorkContext workContext
+@inject SeoSettings seoSettings
+@using Nop.Web.Framework.UI
+@using Nop.Core
+@using Nop.Core.Domain.Seo
+@using FoxNetSoft.Plugin.Misc.CMSManager.Helpers
+@{
+    Layout = "_ColumnsTwo";
+
+    Html.AddCssFileParts(ResolveViewPathHelper.GetThemesCSSPath("styles.css"));
+    var supportRtl = workContext.WorkingLanguage.Rtl;
+    if (supportRtl)
+    {
+        Html.AddCssFileParts(ResolveViewPathHelper.GetThemesCSSPath("styles.rtl.css"));
+    }
+    //title
+    Html.AddTitleParts(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+    Html.AddMetaDescriptionParts(Model.MetaDescription);
+    Html.AddMetaKeywordParts(Model.MetaKeywords);
+
+    var pageUrl = $"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}";
+
+    //canonical URL
+    if (seoSettings.CanonicalUrlsEnabled)
+    {
+        var cmsPageUrl = Url.RouteUrl("CMSPageDetails", new { SeName = Model.SeName }, Context.Request.Scheme);
+        Html.AddCanonicalUrlParts(cmsPageUrl);
+    }
+
+    //open graph META tags
+    if (Model.OpenGraphMetaTags)
+    {
+        Html.AddHeadCustomParts("<meta property=\"og:type\" content=\"article\"/>");
+        Html.AddHeadCustomParts("<meta property=\"og:title\" content=\"" + Html.Encode(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name) + "\"/>");
+        Html.AddHeadCustomParts("<meta property=\"og:description\" content=\"" + Html.Encode(Model.MetaDescription) + "\"/>");
+        if (Model.PictureModel != null && !string.IsNullOrWhiteSpace(Model.PictureModel.ImageUrl))
+        {
+            Html.AddHeadCustomParts("<meta property=\"og:image\" content=\"" + Model.PictureModel.ImageUrl + "\"/>");
+        }
+        Html.AddHeadCustomParts("<meta property=\"og:url\" content=\"" + pageUrl + "\"/>");
+        Html.AddHeadCustomParts("<meta property=\"og:site_name\" content=\"" + Html.Encode(Model.CurrentStoreName) + "\"/>");
+    }
+
+    //Twitter META tags
+    if (Model.TwitterMetaTags)
+    {
+        Html.AddHeadCustomParts("<meta property=\"twitter:card\" content=\"summary\"/>");
+        Html.AddHeadCustomParts("<meta property=\"twitter:site\" content=\"" + Html.Encode(Model.CurrentStoreName) + "\"/>");
+        Html.AddHeadCustomParts("<meta property=\"twitter:title\" content=\"" + Html.Encode(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name) + "\"/>");
+        Html.AddHeadCustomParts("<meta property=\"twitter:description\" content=\"" + Html.Encode(Model.MetaDescription) + "\"/>");
+        if (Model.PictureModel != null && !string.IsNullOrWhiteSpace(Model.PictureModel.ImageUrl))
+        {
+            Html.AddHeadCustomParts("<meta property=\"twitter:image\" content=\"" + Model.PictureModel.ImageUrl + "\"/>");
+        }
+        Html.AddHeadCustomParts("<meta property=\"twitter:url\" content=\"" + pageUrl + "\"/>");
+    }
+}
+@section left {
+    @await Component.InvokeAsync("CMSPageTreeNavigation", new { pageId = Model.Id })
+}
+<!--page breadcrumb-->
+@if (Model.Breadcrumb.Enabled)
+{
+    @await Html.PartialAsync(ResolveViewPathHelper.GetThemesPath("CMSPage/_PageBreadcrumb.cshtml"), Model.Breadcrumb)
+}
+@await Component.InvokeAsync("Widget", new { widgetZone = "cmspage_details_after_breadcrumb", additionalData = Model.Id })
+<div class="page cmspagepost-page">
+    @Html.Raw(Model.LdJsonScript)
+    @await Component.InvokeAsync("Widget", new { widgetZone = "cmspage_top", additionalData = Model.Id })
+    <div class="page-title">
+        <h1>@Model.Name</h1>
+        <span class="cmspage-date">-@Model.DateUserTimeZone.ToString("dddd, dd MMMM yyyy")</span>
+        @if (!string.IsNullOrWhiteSpace(Model.Author))
+        {
+            <span class="cmspage-author">(@Model.Author)</span>
+        }
+    </div>
+    <div class="page-body">
+        <div class="post-body">
+            @Html.Raw(Model.FullDescription)
+        </div>
+        @if (Model.Tags.Count > 0)
+        {
+            <div class="tags">
+                <label>@T("FoxNetSoft.CMSManager.Tags"):</label>
+                <ul>
+                    @for (int i = 0; i < Model.Tags.Count; i++)
+                    {
+                        var tag = Model.Tags[i];
+                        <li><a href="@Url.RouteUrl("CMSManagerByTag", new {tag = tag})">@tag</a></li>
+                        if (i != Model.Tags.Count - 1)
+                        {
+                            <li class="separator">,</li>
+                        }
+                    }
+                </ul>
+            </div>
+        }
+        @await Component.InvokeAsync("Widget", new { widgetZone = "cmspage_before_comments", additionalData = Model.Id })
+        @if (Model.AllowComments)
+        {
+            <div class="fieldset new-comment" id="comments">
+                <div class="title">
+                    <strong>@T("FoxNetSoft.CMSManager.Comments.LeaveYourComment")</strong>
+                </div>
+                @{
+                    var validationSummary = Html.ValidationSummary(true);
+                }
+                <div class="notifications">
+                    <div asp-validation-summary="ModelOnly" class="message-error"></div>
+                    @{
+                        var result = TempData["foxnetsoft.cmsmanager.addcomment.result"] as string;
+                    }
+                    @if (!string.IsNullOrEmpty(result))
+                    {
+                        <div class="result">@result</div>
+                    }
+                </div>
+                <form asp-route="CMSPageDetails" asp-route-sename="@Model.SeName" method="post">
+                    <div class="form-fields">
+                        <div class="inputs">
+                            <label asp-for="AddNewComment.CommentText" asp-postfix=":"></label>
+                            <textarea asp-for="AddNewComment.CommentText" class="enter-comment-text"></textarea>
+                            <span asp-validation-for="AddNewComment.CommentText"></span>
+                        </div>
+                        @if (Model.AddNewComment.DisplayCaptcha)
+                        {
+                            <div class="captcha-box">
+                                <nop-captcha />
+                            </div>
+                        }
+                    </div>
+                    <div class="buttons">
+                        <input type="submit" name="add-comment" class="button-1 blog-post-add-comment-button" value="@T("Blog.Comments.SubmitButton")" />
+                    </div>
+                </form>
+
+            </div>
+            if (Model.Comments.Any())
+            {
+                <div class="comment-list">
+                    <div class="title">
+                        <strong>@T("FoxNetSoft.CMSManager.Comments")</strong>
+                    </div>
+                    <div class="comments">
+                        @foreach (var comment in Model.Comments)
+                        {
+                            <div class="comment blog-comment">
+                                <div class="comment-info">
+                                    <div class="user-info">
+                                        @if (comment.AllowViewingProfiles)
+                                        {
+                                            <a href="@Url.RouteUrl("CustomerProfile", new {id = comment.CustomerId})" class="username">@(comment.CustomerName)</a>
+                                        }
+                                        else
+                                        {
+                                            <span class="username">@(comment.CustomerName)</span>
+                                        }
+
+                                        @if (!String.IsNullOrEmpty(comment.CustomerAvatarUrl))
+                                        {
+                                            <div class="avatar">
+                                                @if (comment.AllowViewingProfiles)
+                                                {
+                                                    <a href="@Url.RouteUrl("CustomerProfile", new {id = comment.CustomerId})" class="avatar-img-link">
+                                                        <img src="@(comment.CustomerAvatarUrl)" class="avatar-img" alt="avatar" />
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <img src="@(comment.CustomerAvatarUrl)" class="avatar-img" alt="avatar" />
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-time">
+                                        <label>@T("FoxNetSoft.CMSManager.Comments.CreatedOn"):</label>
+                                        <span class="stat-value">@comment.CreatedOn.ToString("g")</span>
+                                    </div>
+                                    <div class="comment-body">
+                                        @Html.Raw(Nop.Core.Html.HtmlHelper.FormatText(comment.CommentText, false, true, false, false, false, false))
+                                    </div>
+                                </div>
+                                @await Component.InvokeAsync("Widget", new { widgetZone = "cmspage_inside_comment", additionalData = comment.Id })
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        }
+        @await Component.InvokeAsync("Widget", new { widgetZone = "cmspage_after_comments", additionalData = Model.Id })
+    </div>
+    @await Component.InvokeAsync("Widget", new { widgetZone = "cmspage_bottom", additionalData = Model.Id })
+    @await Component.InvokeAsync("CMSPageRelatedProducts", new { pageId = Model.Id })
+</div>

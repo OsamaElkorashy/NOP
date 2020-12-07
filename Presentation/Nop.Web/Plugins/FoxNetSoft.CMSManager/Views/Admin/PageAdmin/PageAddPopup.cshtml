@@ -1,0 +1,140 @@
+@model FoxNetSoft.Plugin.Misc.CMSManager.Models.Admin.AddPopUpPageModel
+@using FoxNetSoft.Plugin.Misc.CMSManager.Models.Admin
+@{
+    Layout = "_AdminPopupLayout";
+    //page title
+    ViewBag.Title = T("Admin.FoxNetSoft.CMSManager.Page.AddNew").Text;
+}
+
+@if (ViewBag.RefreshPage == true)
+{
+    <script>
+        try {window.opener.document.forms['@(Context.Request.Query["formId"])'].@(Context.Request.Query["btnId"]).click();}
+        catch (e){}
+        window.close();
+    </script>
+}
+
+<form asp-controller="CMSPageAdmin" asp-action="PageAddPopup"
+      asp-route-entitygroup="@Context.Request.Query["entitygroup"]"
+      asp-route-entityid="@Context.Request.Query["entityid"]"
+      asp-route-btnId="@Context.Request.Query["btnId"]"
+      asp-route-formId="@Context.Request.Query["formId"]">
+    <div class="content-header clearfix">
+        <h1 class="pull-left">
+            @T("Admin.FoxNetSoft.CMSManager.Page.AddNew")
+        </h1>
+        <div class="pull-right">
+            &nbsp;
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="form-horizontal">
+            <div class="panel-group">
+                <div class="panel panel-default panel-search panel-popup">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="col-sm-5">
+                                        <nop-label asp-for="SearchPageName" />
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <nop-editor asp-for="SearchPageName" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group" @(Model.HideStoresList ? Html.Raw("style=\"display:none\"") : null)>
+                                    <div class="col-sm-5">
+                                        <nop-label asp-for="SearchStoreId" />
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <nop-select asp-for="SearchStoreId" asp-items="Model.AvailableStores" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group" @(Model.HidePageTypesList ? Html.Raw("style=\"display:none\"") : null)>
+                                    <div class="col-sm-5">
+                                        <nop-label asp-for="SearchPageTypeId" />
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <nop-select asp-for="SearchPageTypeId" asp-items="Model.AvailablePageTypes" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button type="button" id="search-cmspages" class="btn btn-primary btn-search">
+                                    <i class="fa fa-search"></i>
+                                    @T("Admin.Common.Search")
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        @await Html.PartialAsync("Table", new DataTablesModel
+                   {
+                       Name = "cmspages-popup-grid",
+                       UrlRead = new DataUrl("List", "CMSPageAdmin", null),
+                       SearchButtonId = "search-products",
+                       Length = Model.PageSize,
+                       LengthMenu = Model.AvailablePageSizes,
+                       Filters = new List<FilterParameter>
+                            {
+                                new FilterParameter(nameof(Model.SearchPageName)),
+                                new FilterParameter(nameof(Model.SearchPageTypeId)),
+                                new FilterParameter(nameof(Model.SearchStoreId))
+                            },
+                       ColumnCollection = new List<ColumnProperty>
+                            {
+                                new ColumnProperty(nameof(PageModel.Id))
+                                {
+                                    IsMasterCheckBox = true,
+                                    Render = new RenderCheckBox(nameof(AddPopUpPageModel.SelectedPageIds)),
+                                    ClassName = NopColumnClassDefaults.CenterAll,
+                                    Width = "50"
+                                },
+                                new ColumnProperty(nameof(PageModel.PageName))
+                                {
+                                Title = T("Admin.FoxNetSoft.CMSManager.Page.Fields.Name").Text,
+                                },
+                                new ColumnProperty(nameof(PageModel.Published))
+                                {
+                                    Title = T("Admin.FoxNetSoft.CMSManager.Page.Fields.Published").Text,
+                                    Width = "100",
+                                    ClassName = NopColumnClassDefaults.CenterAll,
+                                    Render = new RenderBoolean()
+                                }
+                            }
+                   })
+
+
+                        <script>
+                            $(document).ready(function() {
+                                $("#@Html.IdFor(model => model.SearchPageName)").keydown(function(event) {
+                                    if (event.keyCode == 13) {
+                                        $("#search-cmspages").click();
+                                        return false;
+                                    }
+                                });
+                            });
+                        </script>
+                    </div>
+                    <div class="panel-footer">
+                        <button type="submit" name="save" class="btn bg-blue">
+                            <i class="fa fa-floppy-o"></i>
+                            @T("Admin.Common.Save")
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,30 @@
+﻿@model FoxNetSoft.Plugin.Misc.CMSManager.Models.PageBreadCrumbModel
+@inject CommonSettings commonSettings
+@using Nop.Core.Domain.Common;
+@{
+    var breadcrumbDelimiter = commonSettings.BreadcrumbDelimiter;
+}
+    <div class="breadcrumb">
+        <ul itemscope itemtype="http://schema.org/BreadcrumbList">
+            @for (int i = 0; i < Model.Items.Count; i++)
+            {
+                var item = Model.Items[i];
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                    @if (!string.IsNullOrWhiteSpace(item.SeName))
+                    {
+                        <a href="@Url.RouteUrl("CMSPageDetails", new { SeName = item.SeName })" itemprop="item">
+                           <span itemprop="name">@item.Name</span>
+                        </a>
+                    }
+                    else
+                    {
+                        <strong class="current-item">@item.Name</strong>
+                    }
+                    @if (i + 1 < Model.Items.Count)
+                    {
+                        <span class="delimiter">@breadcrumbDelimiter</span>
+                    }
+                </li>
+            }
+        </ul>
+    </div>

@@ -1,0 +1,143 @@
+﻿.cmspage-date {
+    display: block;
+}
+.cmspage-list .cmspage-item{background:none repeat scroll 0 0 #FFF;border:1px solid #eee;border-radius:4px;-o-border-radius:4px;-icab-border-radius:4px;-khtml-border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px;}
+.cmspage-list {width:auto;margin:0 auto;padding:0;list-style-type:none;}
+.cmspage-list .cmspage-box{text-align:left;clear:both;position:relative;margin-bottom:10px;}
+.cmspage-list .cmspage-box:hover{background:#F9F9F9;}
+.cmspage-list .cmspage-item{width:auto;margin-top:10px;position:relative;zoom:1;}
+.cmspage-list .cmspage-item:after{content:".";display:block;clear:both;height:0;font-size:0;line-height:0;visibility:hidden;}
+.cmspage-list .cmspage-item .details{}
+.cmspage-list .cmspage-item .picture{float:left;margin:10px;}
+.cmspage-list .cmspage-item .cmspage-title
+{
+    font-weight:bold;
+    font-size:16px;
+    padding-left:10px;
+    margin-top:10px;
+}
+.cmspage-list .cmspage-item .cmspage-title a{font-weight:700;display:block;height:auto;line-height:1.3em;overflow:hidden;padding:4px 10px 8px 0;}
+.cmspage-list .cmspage-item .cmspage-title .cmspage-date
+{
+    display: block;
+    padding: 10px;
+    font-style: italic;
+    color: #444;
+    font-weight: 500;
+    font-size: 12px;
+}
+.cmspage-list .cmspage-item .description{padding:0px;text-align:left;color:#555;}
+
+.cmspage-list .cmspage-item .skyblue-links {
+    font-weight: bold;
+}
+
+.cmspage-list .cmspage-item .cmspage-details {
+    display: block;
+}
+
+.cmspage-list .tags {
+	float: right;
+	width: 80%;
+	text-align: right;
+}
+.cmspage-list .buttons {
+	width: 20%;
+	text-align: left;
+}
+
+.block-cmsoage-navigation .cmspagegroupline {
+}
+.block-cmsoage-navigation .articleline  {
+    font-style: italic;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+.block-cmsoage-navigation a {
+    color: #5c5b5b;
+    font-size: 1.1em;
+    font-weight: 400;
+    text-decoration: none;
+}
+.block-cmsoage-navigation .active > a  {
+    color: #5c5b5b;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.cmspage-page .tags, 
+.cmspagepost-page .tags {
+	margin: 0 0 15px;
+	overflow: hidden;
+	padding: 0 10px;
+}
+.cmspage-page .tags label,
+.cmspagepost-page .tags label {
+	display: inline-block;
+	margin: 0 3px 3px 0;
+	font-weight: bold;
+	color: #444;
+}
+.cmspage-page .tags ul,
+.cmspagepost-page .tags ul {
+	display: inline-block;
+	margin: 0 0 3px 3px;
+	font-size: 0;
+}
+.cmspage-page .tags li,
+.cmspagepost-page .tags li {
+	display: inline-block;
+	font-size: 14px; /*reset zeroing*/
+}
+.cmspage-page .tags li.separator,
+.cmspagepost-page .tags li.separator {
+	margin: 0 8px 0 0;
+}
+.cmspage-page .tags a,
+.cmspagepost-page .tags a {
+	display: block;
+	color: #4ab2f1;
+}
+.cmspage-page .tags a:hover,
+.cmspagepost-page .tags a:hover {
+	text-decoration: underline;
+}
+.cmspage-list .buttons {
+	margin: 0 0 10px 0;
+	padding: 0 10px;
+}
+.cmspage-list .buttons .read-comments {
+	display: block;
+	margin: 0 0 15px;
+	font-weight: bold;
+	color: #444;
+}
+.cmspage-list .buttons .read-comments:hover {
+	color: #4ab2f1;
+}
+.cmspage-list .buttons .read-more {
+	display: inline-block;
+	border: none;
+	background-color: #4ab2f1;
+	padding: 10px 20px;
+	font-size: 12px;
+	color: #fff;
+	text-transform: uppercase;
+}
+.cmspage-list .buttons .read-more:hover {
+	background-color: #248ece;
+}
+@media all and (max-width: 480px) {  
+    .cmspage-list .cmspage-item .picture {
+       clear: both;
+       padding: 10px;
+       text-align: center;
+       width: 100%;
+    }
+    .cmspage-list .cmspage-item .details {
+        padding: 10px;
+        clear: both;
+        display: block;
+        width: 100%;
+    }
+}

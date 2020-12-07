@@ -1,0 +1,6 @@
+﻿@model List<PageMenuItemModel>
+@using FoxNetSoft.Plugin.Misc.CMSManager.Models
+@foreach(var menuItem in Model)
+{
+    <li><a href="@menuItem.SeName">@menuItem.Name</a></li>
+}

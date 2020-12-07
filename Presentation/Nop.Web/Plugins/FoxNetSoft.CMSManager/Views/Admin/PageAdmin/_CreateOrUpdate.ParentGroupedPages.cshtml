@@ -1,0 +1,95 @@
+@model FoxNetSoft.Plugin.Misc.CMSManager.Models.Admin.PageModel
+@using FoxNetSoft.Plugin.Misc.CMSManager.Models.Admin
+
+<div class="panel-group">
+    @if (Model.Id > 0)
+    {
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @await Html.PartialAsync("Table", new DataTablesModel
+           {
+               Name = "parentgroupedpages-grid",
+               UrlRead = new DataUrl("ParentGroupedPageList", "CMSPageAdmin", new RouteValueDictionary { [nameof(Model.PageSearchModel.PageId)] = Model.PageSearchModel.PageId }),
+               UrlUpdate = new DataUrl("ParentGroupedPageUpdate", "CMSPageAdmin", null),
+               UrlDelete = new DataUrl("ParentGroupedPageDelete", "CMSPageAdmin", null),
+               Length = Model.PageSearchModel.PageSize,
+               LengthMenu = Model.PageSearchModel.AvailablePageSizes,
+               ColumnCollection = new List<ColumnProperty>
+{
+new ColumnProperty(nameof(ParentGroupedPageModel.Published))
+{
+Title = T("Admin.FoxNetSoft.CMSManager.Page.Fields.Published").Text,
+                             Width = "70",
+                ClassName = NopColumnClassDefaults.CenterAll,
+                Render = new RenderBoolean()
+},
+new ColumnProperty(nameof(ParentGroupedPageModel.Name))
+{
+Title = T("Admin.FoxNetSoft.CMSManager.Page.Fields.Name").Text
+},
+new ColumnProperty(nameof(ParentGroupedPageModel.AdminComment))
+{
+Title = T("Admin.FoxNetSoft.CMSManager.Page.Fields.AdminComment").Text
+},
+                                new ColumnProperty(nameof(ParentGroupedPageModel.DisplayOrder))
+                                {
+                                    Title = T("Admin.FoxNetSoft.CMSManager.Page.Fields.DisplayOrder").Text,
+                                    Width = "70",
+                                    ClassName = NopColumnClassDefaults.CenterAll,
+                                    Editable = true,
+                                    EditType = EditType.Number
+                                },
+new ColumnProperty(nameof(ParentGroupedPageModel.GroupId))
+{
+Title = T("Admin.Common.View").Text,
+Width = "150",
+ClassName = NopColumnClassDefaults.Button,
+Render = new RenderButtonView(new DataUrl("~/Admin/CMSPageAdmin/Edit/", nameof(ParentGroupedPageModel.GroupId)))
+},
+                                new ColumnProperty(nameof(ParentGroupedPageModel.Id))
+                                {
+                                    Title = T("Admin.Common.Edit").Text,
+                                    Width = "100",
+                                    ClassName =  NopColumnClassDefaults.Button,
+                                    Render = new RenderButtonsInlineEdit()
+                                },
+new ColumnProperty(nameof(ParentGroupedPageModel.Id))
+{
+Title = T("Admin.Common.Delete").Text,
+Width = "100",
+Render = new RenderButtonRemove(T("Admin.Common.Delete").Text),
+ClassName = NopColumnClassDefaults.Button
+}
+}
+           })
+
+            </div>
+
+            <div class="panel-footer">
+                <button type="submit" id="btnAddNewParentGroupedPage"
+                        onclick="javascript:OpenWindow('@(Url.Action("PageAddPopup", "CMSPageAdmin" , new { entitygroup = "parentgroupedpage", entityid = Model.Id, btnId="btnRefreshParentGroupedPages" , formId="cmspage-form" , area="Admin" }))', 800, 800, true); return false;"
+                        class="btn btn-primary">
+                    @T("Admin.FoxNetSoft.CMSManager.ParentGroupedPages.AddNew")
+                </button>
+                <input type="submit" id="btnRefreshParentGroupedPages" style="display: none" />
+                <script>
+                    $(document).ready(function () {
+                        $('#btnRefreshParentGroupedPages').click(function () {
+                            //refresh grid
+                            updateTable('#parentgroupedpages-grid');
+                            return false;
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @T("Admin.FoxNetSoft.CMSManager.ParentGroupedPages.SaveBeforeEdit")
+            </div>
+        </div>
+    }
+</div>

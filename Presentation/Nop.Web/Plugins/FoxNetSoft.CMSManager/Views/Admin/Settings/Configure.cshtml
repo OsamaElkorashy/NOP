@@ -1,0 +1,346 @@
+﻿@model FoxNetSoft.Plugin.Misc.CMSManager.Models.Admin.ConfigureModel
+@using Microsoft.AspNetCore.Mvc.Controllers
+@using Nop.Core
+@using Nop.Services.Plugins
+@inject IWebHelper webHelper
+@inject IPluginService pluginService
+@{
+    var plugin = pluginService.FindPluginByTypeInAssembly((this.ViewContext.ActionDescriptor as ControllerActionDescriptor).ControllerTypeInfo);
+
+    //friendly name
+    var friendlyName = plugin?.PluginDescriptor.FriendlyName;
+
+    //Misc plugins
+
+    var configureLocale = "Admin.Configuration.Plugins.Misc.Configure";
+    var backToLocale = "Admin.Configuration.Plugins.Misc.BackToList";
+    var listActionMethodName = "List";
+    var listControllerName = "Plugin";
+
+    //Layout = "_ConfigurePlugin";
+    Layout = "_AdminLayout";
+    Html.SetActiveMenuItemSystemName("FoxNetSoft.CMSManager.Configure");
+    ViewBag.Title = T(configureLocale).Text + " - " + friendlyName;
+
+}
+<div class="content-header clearfix">
+    <h1 class="pull-left">
+        @T(configureLocale) - @friendlyName
+        <small>
+            <i class="fa fa-arrow-circle-left"></i>
+            <a asp-action="@listActionMethodName" asp-controller="@listControllerName">@T(backToLocale)</a>
+        </small>
+    </h1>
+    <div class="pull-right">
+        &nbsp;
+    </div>
+</div>
+<div class="content">
+    <div class="form-horizontal">
+        @await Component.InvokeAsync("StoreScopeConfiguration")
+        <form asp-controller="CMSManagerSettings" asp-action="Configure" method="post">
+            <script>
+                $(document).ready(function () {
+                    $("#EnablePagesOnHomePage").click(toggleHomePage);
+                    $("#EnableTopMenuItem").click(toggleEnableTopMenuItem);
+                    $("#showDebugInfo").click(toggleshowDebugInfo);
+
+                    toggleEnableTopMenuItem()
+                    toggleHomePage();
+                    toggleshowDebugInfo();
+                });
+
+                function toggleEnableTopMenuItem() {
+                    if ($('#EnableTopMenuItem').is(':checked')) {
+                        $('#pnTopMenuItemName').show();
+                    }
+                    else {
+                        $('#pnTopMenuItemName').hide();
+                    }
+                }
+                function toggleHomePage() {
+                    if ($('#EnablePagesOnHomePage').is(':checked')) {
+                        $('#pnHomePageCMSPagesPerPage').show();
+                    }
+                    else {
+                        $('#pnHomePageCMSPagesPerPage').hide();
+                    }
+                }
+                function toggleshowDebugInfo() {
+                    if ($('#showDebugInfo').is(':checked')) {
+                        $('#pnlclearlogfile, #pnlgetlogfile').show();
+                    }
+                    else {
+                        $('#pnlclearlogfile, #pnlgetlogfile').hide();
+                    }
+                }
+            </script>
+
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p>
+                            @if (Model.IsRegisted == true)
+                            {
+                                @T("Admin.FoxNetSoft.CMSManager.Settings.IsRegisted")
+                            }
+                            else
+                            {
+                                @T("Admin.FoxNetSoft.CMSManager.Settings.IsNoRegisted")
+                                <br />
+                                <a href="https://www.foxnetsoft.com/nopcmsmanager" target="blank">Buy It Now</a>
+                            }
+                        </p>
+                        <p>
+                            <div id="pnlcreatesampledata">
+                                <a href="@Url.Action("CreateSampleData")" class="k-button">@T("Admin.FoxNetSoft.CMSManager.Settings.CreateSampleData")</a>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Enabled_OverrideForStore" asp-input="Enabled" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Enabled" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Enabled" />
+                                <span asp-validation-for="Enabled"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="EnableTopMenuItem_OverrideForStore" asp-input="EnableTopMenuItem" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="EnableTopMenuItem" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="EnableTopMenuItem" />
+                                <span asp-validation-for="EnableTopMenuItem"></span>
+                            </div>
+                        </div>
+                        <nop-nested-setting asp-for="EnableTopMenuItem">
+                            <div class="form-group" id="pnTopMenuItemName">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="TopMenuItemName_OverrideForStore" asp-input="TopMenuItemName" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="TopMenuItemName" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="TopMenuItemName" />
+                                    <span asp-validation-for="TopMenuItemName"></span>
+                                </div>
+                            </div>
+                        </nop-nested-setting>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="PageSize_OverrideForStore" asp-input="PageSize" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="PageSize" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="PageSize" />
+                                <span asp-validation-for="PageSize"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="ThumbPictureSize_OverrideForStore" asp-input="ThumbPictureSize" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="ThumbPictureSize" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="ThumbPictureSize" />
+                                <span asp-validation-for="ThumbPictureSize"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="CharsInSmallDescription_OverrideForStore" asp-input="CharsInSmallDescription" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="CharsInSmallDescription" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="CharsInSmallDescription" />
+                                <span asp-validation-for="CharsInSmallDescription"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="ShowNumberOfPagesInTheCategoryTree_OverrideForStore" asp-input="ShowNumberOfPagesInTheCategoryTree" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="ShowNumberOfPagesInTheCategoryTree" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="ShowNumberOfPagesInTheCategoryTree" />
+                                <span asp-validation-for="ShowNumberOfPagesInTheCategoryTree"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p>
+                            @T("Admin.FoxNetSoft.CMSManager.Settings.ProductPage")
+                        </p>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="ProductDetailsPageSize_OverrideForStore" asp-input="ProductDetailsPageSize" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="ProductDetailsPageSize" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="ProductDetailsPageSize" />
+                                <span asp-validation-for="ProductDetailsPageSize"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p>
+                            @T("Admin.FoxNetSoft.CMSManager.Settings.SearchPage")
+                        </p>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="PageSearchTermMinimumLength_OverrideForStore" asp-input="PageSearchTermMinimumLength" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="PageSearchTermMinimumLength" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="PageSearchTermMinimumLength" />
+                                <span asp-validation-for="PageSearchTermMinimumLength"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="SearchInBodyByDefault_OverrideForStore" asp-input="SearchInBodyByDefault" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="SearchInBodyByDefault" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="SearchInBodyByDefault" />
+                                <span asp-validation-for="SearchInBodyByDefault"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p>
+                            @T("Admin.FoxNetSoft.CMSManager.Settings.HomePage")
+                        </p>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="EnablePagesOnHomePage_OverrideForStore" asp-input="EnablePagesOnHomePage" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="EnablePagesOnHomePage" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="EnablePagesOnHomePage" />
+                                <span asp-validation-for="EnablePagesOnHomePage"></span>
+                            </div>
+                        </div>
+                        <nop-nested-setting asp-for="EnablePagesOnHomePage">
+                            <div class="form-group" id="pnHomePageCMSPagesPerPage">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="HomePageCMSPagesPerPage_OverrideForStore" asp-input="HomePageCMSPagesPerPage" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="HomePageCMSPagesPerPage" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="HomePageCMSPagesPerPage" />
+                                    <span asp-validation-for="HomePageCMSPagesPerPage"></span>
+                                </div>
+                            </div>
+                        </nop-nested-setting>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p>
+                            @T("Admin.FoxNetSoft.CMSManager.Settings.Tags")
+                        </p>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="NumberOfTags_OverrideForStore" asp-input="NumberOfTags" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="NumberOfTags" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="NumberOfTags" />
+                                <span asp-validation-for="NumberOfTags"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p>
+                            @T("Admin.FoxNetSoft.CMSManager.Settings.Comments")
+                        </p>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="AllowNotRegisteredUsersToLeaveComments_OverrideForStore" asp-input="AllowNotRegisteredUsersToLeaveComments" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="AllowNotRegisteredUsersToLeaveComments" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="AllowNotRegisteredUsersToLeaveComments" />
+                                <span asp-validation-for="AllowNotRegisteredUsersToLeaveComments"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="NotifyAboutNewBlogComments_OverrideForStore" asp-input="NotifyAboutNewBlogComments" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="NotifyAboutNewBlogComments" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="NotifyAboutNewBlogComments" />
+                                <span asp-validation-for="NotifyAboutNewBlogComments"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-label asp-for="showDebugInfo" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="showDebugInfo" />
+                                <span asp-validation-for="showDebugInfo"></span>
+                                <div id="pnlclearlogfile">
+                                    <a href="@Url.Action("ClearLogFile")" class="k-button">@T("Admin.FoxNetSoft.CMSManager.Settings.ClearLogFile")</a>
+                                </div>
+                                <div id="pnlgetlogfile">
+                                    <a href="@Url.Action("GetLogFile")" class="k-button">@T("Admin.FoxNetSoft.CMSManager.Settings.GetLogFile")</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-label asp-for="StoreUrl" />
+                            </div>
+                            <div class="col-md-9">
+                                <input class="form-control text-box single-line" id="StoreUrl" name="StoreUrl" value="@Model.StoreUrl" type="text" readonly="readonly">
+                                <span asp-validation-for="StoreUrl"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-label asp-for="SerialNumber" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="SerialNumber" />
+                                <span asp-validation-for="SerialNumber"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-9 col-md-offset-3">
+                                <input type="submit" name="save" class="btn bg-primary" value="@T("Admin.Common.Save")" />
+                            </div>
+                        </div>
+                        <p>
+                            Installation and configuring plug-in at Youtube <a href="http://www.youtube.com/foxnetsoft" target="blank">www.youtube.com/foxnetsoft</a>
+                            <br />
+                            Installation and configuring plug-in at our site <a href="https://www.foxnetsoft.com/documentation-cmsmanager" target="blank">https://www.foxnetsoft.com/documentation-cmsmanager</a>
+                            <br />
+                            <a href="https://www.foxnetsoft.com" target="blank">www.foxnetsoft.com</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

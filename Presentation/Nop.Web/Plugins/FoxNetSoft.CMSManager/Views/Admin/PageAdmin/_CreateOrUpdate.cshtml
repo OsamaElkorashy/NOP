@@ -1,0 +1,26 @@
+@model FoxNetSoft.Plugin.Misc.CMSManager.Models.Admin.PageModel
+
+<div asp-validation-summary="All"></div>
+<input asp-for="Id" type="hidden"/>
+
+<div class="content">
+    <div class="form-horizontal">
+        <div class="row">
+            <div class="col-md-12 clearfix">
+                <div class="pull-left">
+                </div>
+            </div>
+        </div>
+        <nop-tabs id="cmspage-edit">
+            <nop-tab asp-name="tab-info" asp-title="@T("Admin.FoxNetSoft.CMSManager.Tab.Info")" asp-default="true">@await Html.PartialAsync("~/Plugins/FoxNetSoft.CMSManager/Views/Admin/PageAdmin/_CreateOrUpdate.Info.cshtml", Model)</nop-tab>
+            <nop-tab asp-name="tab-seo" asp-title="@T("Admin.Common.SEO")">@await Html.PartialAsync("~/Plugins/FoxNetSoft.CMSManager/Views/Admin/PageAdmin/_CreateOrUpdate.SEO.cshtml", Model)</nop-tab>
+            <nop-tab asp-name="tab-childsimplepages" asp-title="@T("Admin.FoxNetSoft.CMSManager.Tab.ChildSimplePages")">@await Html.PartialAsync("~/Plugins/FoxNetSoft.CMSManager/Views/Admin/PageAdmin/_CreateOrUpdate.ChildSimplePages.cshtml", Model)</nop-tab>
+            <nop-tab asp-name="tab-childgroupedpages" asp-title="@T("Admin.FoxNetSoft.CMSManager.Tab.ChildGroupedPages")">@await Html.PartialAsync("~/Plugins/FoxNetSoft.CMSManager/Views/Admin/PageAdmin/_CreateOrUpdate.ChildGroupedPages.cshtml", Model)</nop-tab>
+            <nop-tab asp-name="tab-parentgroupedpages" asp-title="@T("Admin.FoxNetSoft.CMSManager.Tab.ParentGroupedPages")">@await Html.PartialAsync("~/Plugins/FoxNetSoft.CMSManager/Views/Admin/PageAdmin/_CreateOrUpdate.ParentGroupedPages.cshtml", Model)</nop-tab>
+            <nop-tab asp-name="tab-products" asp-title="@T("Admin.FoxNetSoft.CMSManager.Tab.Products")">@await Html.PartialAsync("~/Plugins/FoxNetSoft.CMSManager/Views/Admin/PageAdmin/_CreateOrUpdate.Products.cshtml", Model)</nop-tab>
+            <nop-tab asp-name="tab-categories" asp-title="@T("Admin.FoxNetSoft.CMSManager.Tab.Categories")">@await Html.PartialAsync("~/Plugins/FoxNetSoft.CMSManager/Views/Admin/PageAdmin/_CreateOrUpdate.Categories.cshtml", Model)</nop-tab>
+            <nop-tab asp-name="tab-manufacturers" asp-title="@T("Admin.FoxNetSoft.CMSManager.Tab.Manufacturers")">@await Html.PartialAsync("~/Plugins/FoxNetSoft.CMSManager/Views/Admin/PageAdmin/_CreateOrUpdate.Manufacturers.cshtml", Model)</nop-tab>
+            <nop-tab asp-name="tab-comments" asp-title="@T("Admin.FoxNetSoft.CMSManager.Tab.Comments")">@await Html.PartialAsync("~/Plugins/FoxNetSoft.CMSManager/Views/Admin/PageAdmin/_CreateOrUpdate.Comments.cshtml", Model)</nop-tab>
+        </nop-tabs>
+    </div>
+</div>

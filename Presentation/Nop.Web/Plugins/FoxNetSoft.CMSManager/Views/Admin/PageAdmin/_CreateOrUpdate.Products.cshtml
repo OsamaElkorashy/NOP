@@ -1,0 +1,91 @@
+@model FoxNetSoft.Plugin.Misc.CMSManager.Models.Admin.PageModel
+@using FoxNetSoft.Plugin.Misc.CMSManager.Models.Admin
+
+<div class="panel-group">
+    @if (Model.Id > 0)
+    {
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @await Html.PartialAsync("Table", new DataTablesModel
+           {
+               Name = "pageproducts-grid",
+               UrlRead = new DataUrl("ProductList", "CMSPageAdmin", new RouteValueDictionary { [nameof(Model.PageSearchModel.PageId)] = Model.PageSearchModel.PageId }),
+               UrlDelete = new DataUrl("ProductDelete", "CMSPageAdmin", null),
+               UrlUpdate = new DataUrl("ProductUpdate", "CMSPageAdmin", null),
+               Length = Model.PageSearchModel.PageSize,
+               LengthMenu = Model.PageSearchModel.AvailablePageSizes,
+               ColumnCollection = new List<ColumnProperty>
+{
+new ColumnProperty(nameof(PageProductModel.Published))
+{
+Title = T("Admin.Catalog.Products.Fields.Published").Text,
+                             Width = "70",
+                ClassName = NopColumnClassDefaults.CenterAll,
+                Render = new RenderBoolean()
+},
+new ColumnProperty(nameof(PageProductModel.ProductName))
+{
+Title = T("Admin.Catalog.Products.Fields.Name").Text
+},
+                                new ColumnProperty(nameof(PageProductModel.DisplayOrder))
+                                {
+                                    Title = T("Admin.Catalog.Products.Fields.DisplayOrder").Text,
+                                    Width = "70",
+                                    ClassName = NopColumnClassDefaults.CenterAll,
+                                    Editable = true,
+                                    EditType = EditType.Number
+                                },
+new ColumnProperty(nameof(PageProductModel.ProductId))
+{
+Title = T("Admin.Common.View").Text,
+Width = "150",
+ClassName = NopColumnClassDefaults.Button,
+Render = new RenderButtonView(new DataUrl("~/Admin/Product/Edit/", nameof(PageProductModel.ProductId)))
+},
+                                new ColumnProperty(nameof(PageProductModel.Id))
+                                {
+                                    Title = T("Admin.Common.Edit").Text,
+                                    Width = "100",
+                                    ClassName =  NopColumnClassDefaults.Button,
+                                    Render = new RenderButtonsInlineEdit()
+                                },
+new ColumnProperty(nameof(PageProductModel.Id))
+{
+Title = T("Admin.Common.Delete").Text,
+Width = "100",
+Render = new RenderButtonRemove(T("Admin.Common.Delete").Text),
+ClassName = NopColumnClassDefaults.Button
+}
+}
+           })
+
+            </div>
+
+            <div class="panel-footer">
+                <button type="submit" id="btnAddNewProduct"
+                        onclick="javascript:OpenWindow('@(Url.Action("ProductAddPopup", "CMSPageAdmin" , new {pageId=Model.Id, btnId="btnRefreshProducts" , formId="cmspage-form" , area="Admin" }))', 800, 800, true); return false;"
+                        class="btn btn-primary">
+                    @T("Admin.Catalog.Categories.Products.AddNew")
+                </button>
+                <input type="submit" id="btnRefreshProducts" style="display: none"/>
+                <script>
+                    $(document).ready(function () {
+                        $('#btnRefreshProducts').click(function () {
+                            //refresh grid
+                            updateTable('#pageproducts-grid');
+                            return false;
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @T("Admin.FoxNetSoft.CMSManager.Products.SaveBeforeEdit")
+            </div>
+        </div>
+    }
+</div>

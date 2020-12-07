@@ -1,49 +1,103 @@
-﻿using Nop.Services.Cms;
+﻿using System.Collections.Generic;
+using Nop.Core;
+using Nop.Core.Infrastructure;
+using Nop.Services.Cms;
+using Nop.Services.Configuration;
+using Nop.Services.Localization;
+using Nop.Services.Media;
 using Nop.Services.Plugins;
-using System;
-using System.Collections.Generic;
+using Nop.Web.Framework.Infrastructure;
 
-namespace NOP.Plugin.Misc.Search
+namespace Nop.Plugin.Widgets.DiscountSearch
 {
-    public class DiscountSearch : IWidgetPlugin
+    /// <summary>
+    /// PLugin
+    /// </summary>
+    public class DiscountSearch : BasePlugin, IWidgetPlugin
     {
-        public bool HideInWidgetList => throw new NotImplementedException();
+        private readonly ILocalizationService _localizationService;
+        private readonly IPictureService _pictureService;
+        private readonly ISettingService _settingService;
+        private readonly IWebHelper _webHelper;
+        private readonly INopFileProvider _fileProvider;
 
-        public PluginDescriptor PluginDescriptor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        public string GetConfigurationPageUrl()
+        public DiscountSearch(ILocalizationService localizationService,
+            IPictureService pictureService,
+            ISettingService settingService,
+            IWebHelper webHelper,
+            INopFileProvider fileProvider)
         {
-            throw new NotImplementedException();
+            _localizationService = localizationService;
+            _pictureService = pictureService;
+            _settingService = settingService;
+            _webHelper = webHelper;
+            _fileProvider = fileProvider;
         }
 
-        public string GetWidgetViewComponentName(string widgetZone)
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <summary>
+        /// Gets widget zones where this widget should be rendered
+        /// </summary>
+        /// <returns>Widget zones</returns>
         public IList<string> GetWidgetZones()
         {
-            throw new NotImplementedException();
+            return new List<string> { PublicWidgetZones.HomepageTop };
         }
 
-        public void Install()
+        /// <summary>
+        /// Gets a configuration page URL
+        /// </summary>
+        public override string GetConfigurationPageUrl()
         {
-            throw new NotImplementedException();
+            return _webHelper.GetStoreLocation() + "Admin/WidgetsDiscountSearch/Configure";
         }
 
-        public void PreparePluginToUninstall()
+        /// <summary>
+        /// Gets a name of a view component for displaying widget
+        /// </summary>
+        /// <param name="widgetZone">Name of the widget zone</param>
+        /// <returns>View component name</returns>
+        public string GetWidgetViewComponentName(string widgetZone)
         {
-            throw new NotImplementedException();
+            return "WidgetsDiscountSearch";
         }
 
-        public void Uninstall()
+        /// <summary>
+        /// Install plugin
+        /// </summary>
+        public override void Install()
         {
-            throw new NotImplementedException();
+
+            //settings
+            var settings = new DiscountSearchSettings
+            {
+            };
+            _settingService.SaveSetting(settings);
+
+            _localizationService.AddPluginLocaleResource(new Dictionary<string, string>
+            {
+                ["Plugins.Widgets.DiscountSearch.Picture1"] = "Picture 1",
+            });
+
+            base.Install();
         }
 
-        public void Update(string currentVersion, string targetVersion)
+        /// <summary>
+        /// Uninstall plugin
+        /// </summary>
+        public override void Uninstall()
         {
-            throw new NotImplementedException();
+            //settings
+            _settingService.DeleteSetting<DiscountSearchSettings>();
+
+            //locales
+            _localizationService.DeletePluginLocaleResources("Plugins.Widgets.DiscountSearch");
+
+            base.Uninstall();
         }
+
+        /// <summary>
+        /// Gets a value indicating whether to hide this plugin on the widget list page in the admin area
+        /// </summary>
+        public bool HideInWidgetList => false;
     }
 }

@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "CMS Manager",
+  "SystemName": "FoxNetSoft.CMSManager",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.30" ],
+  "Author": "FoxNetSoft",
+  "DisplayOrder": 1,
+  "FileName": "FoxNetSoft.Plugin.Misc.CMSManager.dll",
+  "Description": "CMS Manager (articles, reviews, news, etc)."
+}

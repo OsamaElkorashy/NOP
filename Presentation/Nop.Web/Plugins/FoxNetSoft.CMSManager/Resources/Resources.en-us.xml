@@ -1,0 +1,615 @@
+﻿<Language Name="English" IsRightToLeft="false">
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.IsRegisted">
+    <Value>Registered version.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.IsNoRegisted">
+    <Value>Unregistered version, only 25 pages.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.IsExpired">
+    <Value>Your license has expired, you should renew the license with a 50% discount.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.StoreUrl">
+    <Value>Website address (for registration)</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.StoreUrl.Hint">
+    <Value>Website address (for registration).</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.showDebugInfo">
+    <Value>Enable Debugging</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.showDebugInfo.Hint">
+    <Value>Write debugging information into file. In ~/App_Data/ folder.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.Enabled">
+    <Value>Enable CMS Manager</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.Enabled.Hint">
+    <Value>Enable CMS Manager.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.SerialNumber">
+    <Value>Serial number</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.SerialNumber.Hint">
+    <Value>Serial number.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.ShowNumberOfPagesInTheCategoryTree">
+    <Value>Show numbers of pages in category tree</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.ShowNumberOfPagesInTheCategoryTree.Hint">
+    <Value>Show numbers of pages in category tree.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.PageSize">
+    <Value>Page size for grouped CMS page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.PageSize.Hint">
+    <Value>Set the page size for grouped CMS page. e.g. '10' CMS Simple pages per one Grouped page.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.CharsInSmallDescription">
+    <Value>Characters in the short description</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.CharsInSmallDescription.Hint">
+    <Value>How many characters of the page to display in the short description of the page. The module looks for the next space in the sentence. It does not break words.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.EnableTopMenuItem">
+    <Value>Add main Menu item</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.EnableTopMenuItem.Hint">
+    <Value>Add the item in the main Menu for all custom pages which you created in the CMS Manager.</Value>
+  </LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.TopMenuItemName">
+		<Value>The name of Top Menu item</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.TopMenuItemName.Hint">
+		<Value>Provide the name of Top Menu item for all pages created in the CMS Manager.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.ProductDetailsPageSize">
+    <Value>Page size for Product details page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.ProductDetailsPageSize.Hint">
+    <Value>Set the number for simple CMS pages on the Product details page.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.ThumbPictureSize">
+    <Value>Page thumbnail image size</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.ThumbPictureSize.Hint">
+    <Value>The default size (pixels) for page thumbnail images displayed on list pages.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.ProductPagePagesPerPage">
+    <Value>Product page. CMS pages per page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.ProductPagePagesPerPage.Hint">
+    <Value>Set the number for CMS pages on 'Product' page.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.HomePage">
+    <Value>Home page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.EnablePagesOnHomePage">
+    <Value>Show CMS pages on Home page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.EnablePagesOnHomePage.Hint">
+    <Value>Enable CMS pages on Home page - widget 'home_page_bottom'.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.HomePageCMSPagesPerPage">
+    <Value>Number of CMS pages</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.HomePageCMSPagesPerPage.Hint">
+    <Value>Set the number for CMS pages. e.g. '4' CMS pages on Home page.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.SearchInBodyByDefault">
+    <Value>Enable search in the page body by default</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.SearchInBodyByDefault.Hint">
+    <Value>Enable search in the page body by default.</Value>
+  </LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.ProductPage">
+		<Value>Product details page</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.SearchPage">
+    <Value>Search CMS page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.PageSearchTermMinimumLength">
+    <Value>Search term minimum length</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.PageSearchTermMinimumLength.Hint">
+    <Value>Set the term minimum length 'Search' page.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.NumberOfTags">
+    <Value>Number of tags (cloud)</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.NumberOfTags.Hint">
+    <Value>The number of CMS page tags that appear in the tag cloud.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.AllowNotRegisteredUsersToLeaveComments">
+    <Value>Allow not registered users to leave comments</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.AllowNotRegisteredUsersToLeaveComments.Hint">
+    <Value>Check to allow not registered users to leave comments.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.NotifyAboutNewBlogComments">
+    <Value>Notify about new page comments</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.NotifyAboutNewBlogComments.Hint">
+    <Value>Check to notify store owner about new page comments.</Value>
+  </LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.Tags">
+	<Value>Tags for CMS pages</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.Comments">
+    <Value>Comments for CMS pages</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.CreateSampleData">
+    <Value>Create sample data</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.ClearLogFile">
+    <Value>Clear the log-file</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Settings.GetLogFile">
+    <Value>Download the log-file</Value>
+  </LocaleResource>
+	<LocaleResource Name="enums.FoxNetSoft.CMSManager.Domain.PageType.SimplePage">
+		<Value>Simple page</Value>
+	</LocaleResource>
+	<LocaleResource Name="enums.FoxNetSoft.CMSManager.Domain.PageType.GroupedPage">
+		<Value>Grouped page</Value>
+	</LocaleResource>
+	<LocaleResource Name="enums.FoxNetSoft.CMSManager.Domain.PageSortingEnum.Default">
+    <Value>Default</Value>
+  </LocaleResource>
+  <LocaleResource Name="enums.FoxNetSoft.CMSManager.Domain.PageSortingEnum.CreatedOn">
+    <Value>Created on</Value>
+  </LocaleResource>
+  <LocaleResource Name="enums.FoxNetSoft.CMSManager.Domain.PageSortingEnum.NameAsc">
+    <Value>Name: A to Z</Value>
+  </LocaleResource>
+  <LocaleResource Name="enums.FoxNetSoft.CMSManager.Domain.PageSortingEnum.NameDesc">
+    <Value>Name: Z to A</Value>
+  </LocaleResource>
+  <LocaleResource Name="enums.FoxNetSoft.CMSManager.Domain.PageSortingEnum.UpdatedOn">
+    <Value>Updated On</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Deleted">
+    <Value>Deleted</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.Published">
+    <Value>Published</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.Published.Hint">
+    <Value>Published</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.DisplayOrder">
+    <Value>Display order</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.DisplayOrder.Hint">
+    <Value>Display order</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Added">
+    <Value>The new CMS page has been added successfully.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Updated">
+    <Value>The CMS page has been updated successfully.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Deleted">
+    <Value>The CMS page has been deleted successfully.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.ActivityLog.Add">
+    <Value>Added a CMS page ('{0}')</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.ActivityLog.Edit">
+    <Value>Edited a CMS page ('{0}')</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.ActivityLog.Delete">
+    <Value>Deleted a CMS page ('{0}')</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.AddNew">
+    <Value>Add a new CMS page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Edit">
+    <Value>Edit a CMS page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.BackToList">
+    <Value>Back to CMS page list</Value>
+  </LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.PageType">
+		<Value>Page type</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.PageType.Hint">
+		<Value>Page type can be simple or grouped. In most cases your page will have the Simple page type. You need to use Grouped page type when a new page consists of one or more existing pages that will be displayed on one single page (ex. category page).</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.Parent">
+		<Value>Parent grouped page</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.Parent.Hint">
+		<Value>Select a parent grouped page for this grouped page. Leave this field empty to make this the root level page.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.Parent.None">
+		<Value>[None]</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.Name">
+    <Value>Name</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.Name.Hint">
+    <Value>The name of the page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.Name.Required">
+    <Value>Please provide a name of the page.</Value>
+  </LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.Description">
+		<Value>Description</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.Author">
+    <Value>Author</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.Author.Hint">
+    <Value>The author of page</Value>
+  </LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.HasPersonalTree">
+		<Value>Has personal tree</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.HasPersonalTree.Hint">
+		<Value>Enable if you need that this category has personal tree and this CMS category page will have category tree level.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.Stores">
+    <Value>Stores</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.ShortDescription">
+    <Value>Short description</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.ShortDescription.Hint">
+    <Value>Short description for the page. If you don't provide it then the plugin creates it automatically from the Full Description.</Value>
+  </LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.FullDescription">
+		<Value>Full Description</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.FullDescription.Hint">
+		<Value>Full description (the body of the HTML page).</Value>
+	</LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.Picture">
+    <Value>Picture</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.Picture.Hint">
+    <Value>Picture</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.MetaKeywords">
+    <Value>Meta keywords</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.MetaKeywords.Hint">
+    <Value>Meta keywords.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.MetaDescription">
+    <Value>Meta description</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.MetaDescription.Hint">
+    <Value>Meta description.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.MetaTitle">
+    <Value>Meta title</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.MetaTitle.Hint">
+    <Value>Meta title.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.SeName">
+    <Value>Search engine friendly page name</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.SeName.Hint">
+    <Value>Search engine friendly page name.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.PageTemplate">
+    <Value>Page template</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.PageTemplate.Hint">
+    <Value>Choose a page template. This template defines how this page will be displayed.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.AclCustomerRoles">
+    <Value>Limited to customer roles</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.AclCustomerRoles.Hint">
+    <Value>Select customer roles for which the page will be shown.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.LimitedToStores">
+    <Value>Limited to stores</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.LimitedToStores.Hint">
+    <Value>Determines whether the page is available only at certain stores.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.DateUtc">
+    <Value>CMS page date</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.DateUtc.Hint">
+    <Value>The date of release this CMS page.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.DateUtc.Required">
+    <Value>Please provide a CMS page date.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.IncludeInSitemap">
+    <Value>Include in sitemap</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.IncludeInSitemap.Hint">
+    <Value>Check to include this page in the sitemap.</Value>
+  </LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.DisplayOrder">
+		<Value>Display order</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.DisplayOrder.Hint">
+		<Value>Display order.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.AddToTopMenu">
+		<Value>Add to Top Menu</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.AddToTopMenu.Hint">
+		<Value>Add this CSM page to Top Menu.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.AdminComment">
+		<Value>Admin comment</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.AdminComment.Hint">
+		<Value>Admin comment. For internal use.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.ShowOnHomePage">
+    <Value>Show on home page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.ShowOnHomePage.Hint">
+    <Value>Check to display this CMS page on your store's home page. Recommended for your most popular CMS pages.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.AllowComments">
+    <Value>Allow comments</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.AllowComments.Hint">
+    <Value>When checked, customers can leave comments about your page.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.Tags">
+    <Value>Tags</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.Tags.Hint">
+    <Value>Tags are keywords that this page can also be identified by. Enter a comma separated list of the tags to be associated with this page.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.Fields.Tags.NoDots">
+    <Value>Dots are not supported by tags.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.List.SearchPageName">
+    <Value>Name of the page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.List.SearchPageName.Hint">
+    <Value>Name of the page</Value>
+  </LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.List.SearchPageType">
+		<Value>Page type</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Page.List.SearchPageType.Hint">
+		<Value>Search by a page type.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.List.Stores">
+		<Value>Stores</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.List.Manage">
+    <Value>Manage pages</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Tab.Info">
+    <Value>Page Info</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Tab.Products">
+    <Value>Products</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Tab.Categories">
+    <Value>Categories</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Tab.Manufacturers">
+    <Value>Manufacturers</Value>
+  </LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Tab.ChildSimplePages">
+		<Value>Child simple pages</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Tab.ChildGroupedPages">
+		<Value>Child grouped pages</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Tab.ParentGroupedPages">
+    <Value>Parent grouped pages</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Tab.Comments">
+    <Value>Comments</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Comments.Page">
+    <Value>Page Comments</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Products.AddNew">
+    <Value>Add a new product</Value>
+  </LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.ChildSimplePages.AddNew">
+		<Value>Add child simple page</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.ChildGroupedPages.AddNew">
+		<Value>Add child grouped page</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.ParentGroupedPages.AddNew">
+    <Value>Add this page to the grouped page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Products.SaveBeforeEdit">
+    <Value>You need to save the CMS page before you can add products for this page.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Categories.SaveBeforeEdit">
+    <Value>You need to save the CMS page before you can add categories for this page.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Manufacturers.SaveBeforeEdit">
+    <Value>You need to save the CMS page before you can add manufacturers for this page.</Value>
+  </LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.ChildSimplePages.SaveBeforeEdit">
+		<Value>You need to save the CMS page before you can add pages for this page.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.ChildGroupedPages.SaveBeforeEdit">
+		<Value>You need to save the CMS page before you can add pages for this page.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.ParentGroupedPages.SaveBeforeEdit">
+    <Value>You need to save the CMS page before you can add groups for this page.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Comments.SaveBeforeEdit">
+    <Value>You need to save the CMS page.</Value>
+  </LocaleResource>
+	<LocaleResource Name="Admin.FoxNetSoft.CMSManager.Groups.SaveBeforeEdit">
+		<Value>You need to save the CMS CMS page before you can add groups for this page.</Value>
+	</LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Categories.NoCategoriesAvailable">
+    <Value>No records to display.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Manufacturers.NoManufacturersAvailable">
+    <Value>No records to display.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Categories.NoGroupsAvailable">
+    <Value>No records to display.</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.PageTitle.CMSPage">
+    <Value>Articles, reviews, news, promotions, tips</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.PageTitle.NextRead">
+    <Value>next...</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Media.ImageLinkTitleFormat">
+    <Value>Show details for {0}</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Media.ImageAlternateTextFormat">
+    <Value>Picture of {0}</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.LinkButton">
+    <Value>Custom pages</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.RelatedProducts">
+    <Value>Related products</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.FailedToLoad">
+    <Value>Failed to load pages.</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Search.SearchTermMinimumLengthIsNCharacters">
+    <Value>Search term minimum length is {0} characters</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Search.NoResultsText">
+    <Value>No pages were found that matched your criteria.</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Search.Link">
+    <Value>Search in CMS pages</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Search.AdvancedSearch">
+    <Value>Advanced search</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Search.SearchInBody">
+    <Value>Search In page body</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Search.IncludeSubGroups">
+    <Value>Automatically search sub groups</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Search.Group">
+    <Value>Category</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Search.SearchTerm">
+    <Value>Search keyword</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Search.Button">
+    <Value>Search</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Search.Title">
+    <Value>Search</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.PageDetails.OrderBy">
+    <Value>Sort by</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Breadcrumb.Top">
+    <Value>Home</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.PageTemplates">
+    <Value>Page templates</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.PageTemplates.DisplayOrder">
+    <Value>Display order</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.PageTemplates.Name">
+    <Value>Name</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.PageTemplates.Name.Required">
+    <Value>Name is required</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.PageTemplates.ViewPath">
+    <Value>View path</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.PageTemplates.ViewPath.Required">
+    <Value>View path is required</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Name">
+    <Value>CMS Manager</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Comments.DeleteSelected">
+    <Value>Delete selected</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Comments.Fields.Page">
+    <Value>Page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Comments.Fields.Comment">
+    <Value>Comment</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Comments.Fields.CreatedOn">
+    <Value>Created on</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Comments.Fields.Customer">
+    <Value>Customer</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Comments.CommentText">
+    <Value>Comment</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Comments.CommentText.Required">
+    <Value>Enter comment text</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Comments.CreatedOn">
+    <Value>Created on</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Comments.LeaveYourComment">
+    <Value>Leave your comment</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Comments.OnlyRegisteredUsersLeaveComments">
+    <Value>Only registered users can leave comments.</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Comments.SubmitButton">
+    <Value>New comment</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Comments.SuccessfullyAdded">
+    <Value>The comment is successfully added.</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.MoreInfo">
+    <Value>details</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.TagCloud">
+    <Value>Popular tags</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.ActivityLog.PublicStore.AddPageComment">
+    <Value>Added a CMS page comment</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Tags">
+    <Value>Tags</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.Comments">
+    <Value>Comments</Value>
+  </LocaleResource>
+  <LocaleResource Name="FoxNetSoft.CMSManager.CommentsLink">
+    <Value>Comments ({0:d})</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.CommentsLink">
+    <Value>Comments ({0:d})</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Menu.Brand">
+    <Value>FoxNetSoft</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Menu.Name">
+    <Value>CMS Manager</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Menu.Configure">
+    <Value>Configure</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Menu.Templates">
+    <Value>Templates</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Menu.Comments">
+    <Value>Comments</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.Menu.List">
+    <Value>Custom pages</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.CMSManager.PageTags.Placeholder">
+    <Value>Enter tags ...</Value>
+  </LocaleResource>
+</Language>
+

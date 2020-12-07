@@ -1,0 +1,19 @@
+﻿@model FoxNetSoft.Plugin.Misc.CMSManager.Models.PageTagListModel
+@if (Model.Tags.Any())
+{
+    <div class="block block-popular-pagetags">
+        <div class="title">
+            <strong>@T("FoxNetSoft.CMSManager.TagCloud")</strong>
+        </div>
+        <div class="listbox">
+            <ul class="tags">
+                @foreach (var item in Model.Tags)
+                {
+                    <li>
+                        <a href="@Url.RouteUrl("CMSManagerByTag", new { tag = item.Name })" style="font-size:@(Model.GetFontSize(item))%;">@item.Name</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}

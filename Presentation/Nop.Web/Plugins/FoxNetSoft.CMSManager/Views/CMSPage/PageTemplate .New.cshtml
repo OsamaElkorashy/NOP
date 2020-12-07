@@ -1,0 +1,8 @@
+﻿
+@{
+    Layout = "_ColumnsTwo";
+}
+@section left {
+    @await Component.InvokeAsync("CMSPageTreeNavigation", new { pageId = Model.Id })
+}
+<h1>hi</h1>

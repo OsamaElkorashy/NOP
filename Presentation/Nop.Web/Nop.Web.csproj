@@ -60,10 +60,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Plugins\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="Views\Catalog\DiscountProducts.cshtml" />
   </ItemGroup>
 

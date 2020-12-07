@@ -1,0 +1,25 @@
+﻿@model FoxNetSoft.Plugin.Misc.CMSManager.Models.PageDetailsModel
+@inject IWorkContext workContext
+@using Nop.Web.Framework.UI
+@using Nop.Core
+@using FoxNetSoft.Plugin.Misc.CMSManager.Helpers
+@{
+    Html.AddCssFileParts(ResolveViewPathHelper.GetThemesCSSPath("styles.css"));
+    var supportRtl = workContext.WorkingLanguage.Rtl;
+    if (supportRtl)
+    {
+        Html.AddCssFileParts(ResolveViewPathHelper.GetThemesCSSPath("styles.rtl.css"));
+    }
+    //title
+    Html.AddTitleParts(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+}
+<div class="page cmspagepost-page">
+    <div class="page-title">
+        <h1>@Model.Name</h1>
+    </div>
+    <div class="page-body">
+        <div class="post-body">
+            @Html.Raw(Model.FullDescription)
+        </div>
+    </div>
+</div>

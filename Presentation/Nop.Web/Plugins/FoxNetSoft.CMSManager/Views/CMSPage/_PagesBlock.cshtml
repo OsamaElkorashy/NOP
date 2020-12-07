@@ -1,0 +1,66 @@
+﻿@model IList<FoxNetSoft.Plugin.Misc.CMSManager.Models.PageOverviewModel>
+@using FoxNetSoft.Plugin.Misc.CMSManager.Models
+@using Nop.Web.Extensions
+<div class="cmspage-list">
+    @foreach (var item in Model)
+    {
+        <div class="cmspage-box">
+            <div class="cmspage-item" data-cmspageid="@item.Id">
+                <div class="picture">
+                    <a href="@Url.RouteUrl("CMSPageDetails", new { SeName = item.SeName })" title="@item.PictureModel.Title">
+                        <img alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title"/>
+                    </a>
+                </div>
+                <div class="details">
+                    <div class="cmspage-title">
+                        <a href="@Url.RouteUrl("CMSPageDetails", new { SeName = item.SeName })">@item.Name</a>
+                        <span class="cmspage-date">-@item.DateUserTimeZone.ToString("dddd, dd MMMM yyyy")</span>
+                    </div>
+                    <div class="description">
+                        @Html.Raw(item.ShortDescription)
+                        <span class="skyblue-links">
+                            <a href="@Url.RouteUrl("CMSPageDetails", new { SeName = item.SeName })">@T("FoxNetSoft.CMSManager.PageTitle.NextRead")</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="cmspage-details">
+                    @if (item.Tags.Any())
+                    {
+                        <div class="tags">
+                            <label>@T("FoxNetSoft.CMSManager.Tags"):</label>
+                            <ul>
+                                @for (int i = 0; i < item.Tags.Count; i++)
+                                {
+                                    var tag = item.Tags[i];
+                                    <li><a href="@Url.RouteUrl("CMSManagerByTag", new {tag = tag})">@tag</a></li>
+                                    if (i != item.Tags.Count - 1)
+                                    {
+                                        <li class="separator">,</li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    }
+                    <div class="buttons">
+                        @if (item.AllowComments)
+                        {
+                            <a href="@Url.RouteUrl("CMSPageDetails", new {SeName = item.SeName})#comments" class="read-comments">@string.Format(T("FoxNetSoft.CMSManager.CommentsLink").Text, item.NumberOfComments)</a>
+                        }
+                        <a href="@Url.RouteUrl("CMSPageDetails", new {SeName = item.SeName})" class="read-more">@T("FoxNetSoft.CMSManager.MoreInfo")</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @if (ViewBag.PagingFilteringContext != null)
+    {
+        var pager = Html.Pager((PagePagingFilteringModel)ViewBag.PagingFilteringContext).QueryParam("pagenumber");
+        if (!pager.IsEmpty())
+        {
+            <div class="pager">
+                @pager
+            </div>
+        }
+    }
+</div>
+

@@ -1,0 +1,353 @@
+@model FoxNetSoft.Plugin.Misc.CMSManager.Models.Admin.PageModel
+@using FoxNetSoft.Plugin.Misc.CMSManager.Models.Admin
+@using FoxNetSoft.Plugin.Misc.CMSManager.Domain
+@using Nop.Services
+
+@{
+    //resources for product tags input
+    Html.AppendCssFileParts("~/lib/tagEditor/jquery.tag-editor.css");
+    Html.AppendScriptParts("~/lib/tagEditor/jquery.tag-editor.min.js");
+    Html.AppendScriptParts("~/lib/tagEditor/jquery.caret.min.js");
+}
+<script>
+    //tags
+     $(document).ready(function () {
+        @Html.Raw(Model.InitialPageTags)
+        $("#@Html.IdFor(model => model.Tags)").tagEditor({
+            autocomplete: {
+                delay: 0,
+                position: { collision: 'flip' },
+                source: initialPageTags
+            },
+            delimiter: ',',
+            placeholder: '@T("Admin.FoxNetSoft.CMSManager.PageTags.Placeholder")'
+        });
+
+         $("#@Html.IdFor(model => model.PageTypeId)").change(togglePageType);
+
+        togglePageType();
+    });
+
+     function togglePageType() {
+        var simplePageId = "@((int)PageType.SimplePage)";
+        var groupedPageId = "@((int)PageType.GroupedPage)";
+
+        var selectedPageTypeId = $("#@Html.IdFor(model => model.PageTypeId)").val();
+         if (selectedPageTypeId == simplePageId) {
+             $('.cmspage-simple').show();
+             $('.cmspage-grouped').hide();
+             $('[data-tab-name=tab-products]').parent().show();
+             $('[data-tab-name=tab-categories]').parent().show();
+             $('[data-tab-name=tab-manufacturers]').parent().show();
+             $('[data-tab-name=tab-parentgroupedpages]').parent().show();
+             $('[data-tab-name=tab-comments]').parent().show();
+             $('[data-tab-name=tab-childsimplepages]').parent().hide();
+             $('[data-tab-name=tab-childgroupedpages]').parent().hide();
+         } else if (selectedPageTypeId == groupedPageId) {
+             $('.cmspage-simple').hide();
+             $('.cmspage-grouped').show();
+             $('[data-tab-name=tab-products]').parent().hide();
+             $('[data-tab-name=tab-categories]').parent().hide();
+             $('[data-tab-name=tab-manufacturers]').parent().hide();
+             $('[data-tab-name=tab-parentgroupedpages]').parent().hide();
+             $('[data-tab-name=tab-comments]').parent().hide();
+             $('[data-tab-name=tab-childsimplepages]').parent().show();
+             $('[data-tab-name=tab-childgroupedpages]').parent().show();
+        }
+    }
+</script>
+
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="PageTypeId" />
+                </div>
+                <div class="col-md-9">
+                    <nop-select asp-for="PageTypeId" asp-items="@(((PageType)Model.PageTypeId).ToSelectList())" />
+                    <span asp-validation-for="PageTypeId"></span>
+                </div>
+            </div>
+            <div class="form-group cmspage-grouped">
+                <div class="col-md-3">
+                    <nop-label asp-for="ParentPageId" />
+                </div>
+                <div class="col-md-9">
+                    <nop-select asp-for="ParentPageId" asp-items="Model.AvailableParentPages" />
+                    <span asp-validation-for="ParentPageId"></span>
+                </div>
+            </div>
+            @(Html.LocalizedEditor<PageModel, PageLocalizedModel>("cmspage-info-localized",
+                @<div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <nop-label asp-for="@Model.Locales[item].Name"/>
+                        </div>
+                        <div class="col-md-9">
+                            <nop-editor asp-for="@Model.Locales[item].Name"/>
+                            <span asp-validation-for="@Model.Locales[item].Name"></span>
+                        </div>
+                    </div>
+                    <div class="form-group cmspage-simple">
+                        <div class="col-md-3">
+                            <nop-label asp-for="@Model.Locales[item].Author"/>
+                        </div>
+                        <div class="col-md-9">
+                            <nop-editor asp-for="@Model.Locales[item].Author"/>
+                            <span asp-validation-for="@Model.Locales[item].Author"></span>
+                        </div>
+                    </div>
+                    <div class="form-group cmspage-simple">
+                        <div class="col-md-3">
+                            <nop-label asp-for="@Model.Locales[item].ShortDescription"/>
+                        </div>
+                        <div class="col-md-9">
+                            <nop-textarea asp-for="@Model.Locales[item].ShortDescription"/>
+                            <span asp-validation-for="@Model.Locales[item].ShortDescription"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <nop-label asp-for="@Model.Locales[item].FullDescription"/>
+                        </div>
+                        <div class="col-md-9">
+                            <nop-editor asp-for="@Model.Locales[item].FullDescription" asp-template="RichEditor"/>
+                            <span asp-validation-for="@Model.Locales[item].FullDescription"></span>
+                        </div>
+                    </div>
+                    <input type="hidden" asp-for="@Model.Locales[item].LanguageId"/>
+                </div>
+                    ,
+                @<div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <nop-label asp-for="Name"/>
+                        </div>
+                        <div class="col-md-9">
+                            <nop-editor asp-for="Name"/>
+                            <span asp-validation-for="Name"></span>
+                        </div>
+                    </div>
+                    <div class="form-group cmspage-simple">
+                        <div class="col-md-3">
+                            <nop-label asp-for="Author"/>
+                        </div>
+                        <div class="col-md-9">
+                            <nop-editor asp-for="Author"/>
+                            <span asp-validation-for="Author"></span>
+                        </div>
+                    </div>
+                    <div class="form-group cmspage-simple">
+                        <div class="col-md-3">
+                            <nop-label asp-for="ShortDescription"/>
+                        </div>
+                        <div class="col-md-9">
+                            <nop-textarea asp-for="ShortDescription"/>
+                            <span asp-validation-for="ShortDescription"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <nop-label asp-for="FullDescription"/>
+                        </div>
+                        <div class="col-md-9">
+                            <nop-editor asp-for="FullDescription" asp-template="RichEditor"/>
+                            <span asp-validation-for="FullDescription"></span>
+                        </div>
+                    </div>
+                </div>
+                    ))
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="Published" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="Published" />
+                    <span asp-validation-for="Published"></span>
+                </div>
+            </div>
+            <div class="form-group cmspage-simple">
+                <div class="col-md-3">
+                    <nop-label asp-for="DateUtc" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="DateUtc" />
+                    <span asp-validation-for="DateUtc"></span>
+                </div>
+            </div>
+            <div class="form-group cmspage-simple">
+                <div class="col-md-3">
+                    <nop-label asp-for="PageTemplateId" />
+                </div>
+                <div class="col-md-9">
+                    <nop-select asp-for="PageTemplateId" asp-items="Model.AvailablePageTemplates" />
+                    <span asp-validation-for="PageTemplateId"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="PictureId" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="PictureId" />
+                    <span asp-validation-for="PictureId"></span>
+                </div>
+            </div>
+            <div class="form-group cmspage-grouped">
+                <div class="col-md-3">
+                    <nop-label asp-for="DisplayOrder" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="DisplayOrder" />
+                    <span asp-validation-for="DisplayOrder"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="IncludeInSitemap" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="IncludeInSitemap" />
+                    <span asp-validation-for="IncludeInSitemap"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="AddToTopMenu" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="AddToTopMenu" />
+                    <span asp-validation-for="AddToTopMenu"></span>
+                </div>
+            </div>
+            <div class="form-group cmspage-simple">
+                <div class="col-md-3">
+                    <nop-label asp-for="ShowOnHomePage" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ShowOnHomePage" />
+                    <span asp-validation-for="ShowOnHomePage"></span>
+                </div>
+            </div>
+            <div class="form-group cmspage-grouped">
+                <div class="col-md-3">
+                    <nop-label asp-for="HasPersonalTree" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="HasPersonalTree" />
+                    <span asp-validation-for="HasPersonalTree"></span>
+                </div>
+            </div>
+            <div class="form-group cmspage-simple">
+                <div class="col-md-3">
+                    <nop-label asp-for="AllowComments" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="AllowComments" />
+                    <span asp-validation-for="AllowComments"></span>
+                </div>
+            </div>
+            <div class="form-group cmspage-simple">
+                <div class="col-md-3">
+                    <nop-label asp-for="Tags" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="Tags" />
+                    <span asp-validation-for="Tags"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="SelectedCustomerRoleIds" />
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <nop-select asp-for="SelectedCustomerRoleIds" asp-items="Model.AvailableCustomerRoles" asp-multiple="true" />
+                            <script>
+                        $(document).ready(function() {
+                            var rolesIdsInput = $('#@Html.IdFor(model => model.SelectedCustomerRoleIds)')
+                                .data("kendoMultiSelect");
+                            rolesIdsInput.setOptions({
+                                autoClose: false,
+                                filter: "contains"
+                            });
+
+                            @if (Model.AvailableCustomerRoles.Count == 0)
+                            {
+                                <text>
+                                    rolesIdsInput.setOptions({
+                                        enable: false,
+                                        placeholder: 'No customer roles available'
+                                    });
+                                    rolesIdsInput._placeholder();
+                                    rolesIdsInput._enable();
+                                </text>
+                            }
+                        });
+                            </script>
+                        </div>
+                        <div class="col-md-8">
+                            @await Component.InvokeAsync("AclDisabledWarning")
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="SelectedStoreIds" />
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <nop-select asp-for="SelectedStoreIds" asp-items="Model.AvailableStores" asp-multiple="true" />
+                            <script>
+                                $(document).ready(function() {
+                                    var storesIdsInput = $('#@Html.IdFor(model => model.SelectedStoreIds)').data("kendoMultiSelect");
+                                    storesIdsInput.setOptions({
+                                        autoClose: false,
+                                        filter: "contains"
+                                    });
+
+                                    @if (Model.AvailableStores.Count == 0)
+                            {
+                                <text>
+                                    storesIdsInput.setOptions({
+                                        enable: false,
+                                        placeholder: 'No stores available'
+                                    });
+                                    storesIdsInput._placeholder();
+                                    storesIdsInput._enable();
+                                    </text>
+                            }
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="AdminComment" />
+                </div>
+                <div class="col-md-9">
+                    <nop-textarea asp-for="AdminComment"></nop-textarea>
+                    <span asp-validation-for="AdminComment"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

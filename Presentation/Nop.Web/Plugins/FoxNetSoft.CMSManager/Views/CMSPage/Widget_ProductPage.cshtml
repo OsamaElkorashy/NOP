@@ -1,0 +1,47 @@
+﻿@model IList<FoxNetSoft.Plugin.Misc.CMSManager.Models.PageOverviewModel>
+@inject IWorkContext workContext
+@using Nop.Core
+@using Nop.Web.Framework.UI
+@using FoxNetSoft.Plugin.Misc.CMSManager.Helpers
+@{
+    Html.AddCssFileParts(ResolveViewPathHelper.GetThemesCSSPath("styles.css"));
+    var supportRtl = workContext.WorkingLanguage.Rtl;
+    if (supportRtl)
+    {
+        Html.AddCssFileParts(ResolveViewPathHelper.GetThemesCSSPath("styles.rtl.css"));
+    }
+}
+<div class="page cmspage-page">
+    <div class="page-body">
+        <div class="page-title">
+            <h2>
+                @T("FoxNetSoft.CMSManager.PageTitle.CMSPage")
+            </h2>
+        </div>
+        <div class="cmspage-list">
+            @foreach (var item in Model)
+            {
+                <div class="cmspage-box">
+                    <div class="cmspage-item" data-cmspageid="@item.Id">
+                        <div class="picture">
+                            <a href="@Url.RouteUrl("CMSPageDetails", new { SeName = item.SeName })" title="@item.PictureModel.Title">
+                                <img alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title"/>
+                            </a>
+                        </div>
+                        <div class="details">
+                            <h2 class="cmspage-title">
+                                <a class="cmspage-title" href="@Url.RouteUrl("CMSPageDetails", new { SeName = item.SeName })">@item.Name</a>
+                            </h2>
+                            <div class="description">
+                                @Html.Raw(item.ShortDescription)
+                                <span class="skyblue-links">
+                                    <a class="cmspage-title" href="@Url.RouteUrl("CMSPageDetails", new { SeName = item.SeName })">@T("FoxNetSoft.CMSManager.PageTitle.NextRead")</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

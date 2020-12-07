@@ -1,0 +1,6 @@
+@model FoxNetSoft.Plugin.Misc.CMSManager.Models.Admin.TabContentSearchModel
+@{
+    const string hideCMSManagerBlockName = "ProductPage.CMSManager";
+    var hideCMSManagerBlock = genericAttributeService.GetAttribute<bool>(workContext.CurrentCustomer, hideCMSManagerBlockName);
+}
+<nop-panel asp-name="cmsmanager" asp-icon="fa fa-download" asp-title="@T("Admin.FoxNetSoft.CMSManager.Name")" asp-hide-block-attribute-name="@hideCMSManagerBlockName" asp-hide="@hideCMSManagerBlock" asp-advanced="true">@await Html.PartialAsync("~/Plugins/FoxNetSoft.CMSManager/Views/Admin/Comment/AdminTabStripContent.cshtml", Model)</nop-panel>

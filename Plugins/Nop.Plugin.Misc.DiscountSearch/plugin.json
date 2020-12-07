@@ -1,11 +1,11 @@
 ﻿{
-  "Group": "Misc",
-  "FriendlyName": "Search",
-  "SystemName": "Misc.Search",
+  "Group": "Widgets",
+  "FriendlyName": "DiscountSearch",
+  "SystemName": "Widgets.DiscountSearch",
   "Version": "1.0",
   "SupportedVersions": [ "4.30" ],
   "Author": "Asset team",
   "DisplayOrder": 0,
-  "FileName": "Nop.Plugin.Misc.Search.dll",
+  "FileName": "Nop.Plugin.Widgets.DiscountSearch.dll",
   "Description": "This plugin allows to Search by discount"
 }

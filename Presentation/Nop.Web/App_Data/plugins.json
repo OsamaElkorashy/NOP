@@ -68,12 +68,20 @@
       "Version": "4.3"
     },
     {
+      "SystemName": "SevenSpikes.Nop.Plugins.ProductRibbons",
+      "Version": "4.3"
+    },
+    {
+      "SystemName": "FoxNetSoft.CMSManager",
+      "Version": "1.00"
+    },
+    {
       "SystemName": "SevenSpikes.Nop.Plugins.AjaxFilters",
       "Version": "4.3"
     },
     {
-      "SystemName": "SevenSpikes.Nop.Plugins.ProductRibbons",
-      "Version": "4.3"
+      "SystemName": "Widgets.DiscountSearch",
+      "Version": "1.0"
     }
   ],
   "PluginNamesToUninstall": [],
